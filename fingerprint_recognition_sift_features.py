@@ -10,15 +10,10 @@
 # To connect the drive, all you need to do is to click on the folder icon on the left and then to the drive icon 
 # under the files 
 import os
-from google.colab.patches import cv2_imshow
 # setting the path for the folder containing the data
-datapath = "/content/drive/MyDrive/Bucknell University/Teaching/Biometrics Implementations/Fingerprint/Dataset/SOCOFing/"
+datapath = os.path.join(os.getcwd(),"Dataset")
 # os.listdir returns a list of items residing in the input folder location
 folder_list = os.listdir(datapath)
-# I downloaded the dataset on Mac which created a .DS_Store file
-# The following code is just getting rid of that. 
-if '.DS_Store' in folder_list:
-  folder_list.remove('.DS_Store') # removing the extra Mac folder!
 
 # creating a dictionary of the foldernames, not necessary just a preference
 dfolders = {'Template':'Real', 'Probe-Hard':'Altered-Hard', 'Probe-Medium': 'Altered-Medium', 'Probe-Easy':'Altered-Easy'}
@@ -54,7 +49,9 @@ probe_image_name = "125__M_Right_ring_finger_Zcut.BMP"
 probe_file_parentdir = os.path.join(datapath, 'Altered', dfolders['Probe-Hard'])
 probe_image = cv2.imread(os.path.join(probe_file_parentdir, probe_image_name))
 print(f'following is how the probe image looks like visually:')
-cv2_imshow(probe_image)
+final_image = cv2.resize(probe_image, (400, 300))
+cv2.imshow("probe_and_template_images", final_image)
+cv2.waitKey(5)
 
 # Now to compare we need to extract features from the probe image
 # Extracting the keypoints and descriptors from the probe image.
@@ -112,14 +109,20 @@ for image_name in template_filenames:
       # display images
       # concatenate image Horizontally
       # https://www.geeksforgeeks.org/how-to-display-multiple-images-in-one-window-using-opencv-python/
-      Horizontal = np.concatenate((probe_image, template_image), axis=1)
-      cv2_imshow(Horizontal)
+      horizontal = np.concatenate((probe_image, template_image), axis=1)
+      horizontal = np.concatenate((probe_image, best_match_image), axis=1)
+      final_image = cv2.resize(horizontal, (400, 300))
+      cv2.imshow("probe_and_template_images", final_image)
+      cv2.waitKey(5)
 
 
 print(f'best match template: {best_match_filename}')
 print(f'best score: {best_score}')
-Horizontal = np.concatenate((probe_image, best_match_image), axis=1)
-cv2_imshow(Horizontal)
+horizontal = np.concatenate((probe_image, best_match_image), axis=1)
+final_image = cv2.resize(horizontal, (400, 300))
+cv2.imshow("probe_and_template_images", final_image)
+cv2.waitKey(0)
+# cv2.destroyAllWindows()
 
 # if len(match_points) > 0:
 #     result = cv2.drawMatches(probe_image, kp1, best_match_image, kp2, mp, None)
