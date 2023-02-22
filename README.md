@@ -6,7 +6,7 @@ Biometric systems - fingerprint recognition via SIFT, performance evaluation on 
 
 Spring 2023, Bucknell University 
 
-Due date: March 8th, 2023, Midnight (11:59)| submissions would be accepted through GitHub only unless stated otherwise.
+Due date: Due March 10th, 5 pm | submissions would be accepted through GitHub only unless stated otherwise.
 
 Your full name:  
 
