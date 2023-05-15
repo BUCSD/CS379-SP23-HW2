@@ -1,3 +1,14 @@
+### Note for future improvement: 
+
+Provide a better idea of authentication and identification 
+
+Maybe say authentication is auth(id, token) matches with that of the id's stored pictures for genuine scores and matches with that of non-id folder to get
+impostor scores
+
+in contrast, identification(token) search for the id, basically the id would be the one which brings the highest match score
+but remember the highest match score might not be the person that you are searching for and that would be false alarm. 
+
+
 ### Fingerprint-Recognition-SIFT
 
 # CS379SP23-HW2
@@ -54,6 +65,8 @@ Make sure you download the full dataset from the provided source and
 (6) Comment on the performance of both Authentication and Identification functionalities with reasoning  
 
 (7) Expand the report document you created in step 1, outlining the process you followed, the results (roc, det, eer) you got, and what is your interpretation of the results. Upload the report in pdf format.
+
+(8) Which functionality (identification or authentication) achieved the best EER rates and how would you explain that?
 
 Each of the above tasks will be graded, so please complete all of them. 
 
